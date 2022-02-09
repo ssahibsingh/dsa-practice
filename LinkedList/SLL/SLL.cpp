@@ -165,7 +165,22 @@ Node* middleNode(Node* head){
     return slow;
 }
 
+void removeNthNodeFromEnd(Node* &head, int n){
+    Node* fast = head;
+    Node* slow = head;
 
+    while(n>0){
+        fast = fast->next;
+        n--;
+    }
+
+    while(fast->next !=NULL){
+        fast = fast->next;
+        slow = slow->next;
+    }
+
+    slow->next = slow->next->next;
+}
 int main()
 {
     Node *head = new Node(5);
@@ -193,5 +208,9 @@ int main()
 
     Node* midNode = middleNode(newHead);
     cout<<midNode->data<<endl;
+
+    removeNthNodeFromEnd(newHead, 2);
+    display(newHead);
+
     return 0;
 }
